@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using GIFterWeb.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace GIFterWeb.Data
@@ -9,5 +10,7 @@ namespace GIFterWeb.Data
             : base(options)
         {
         }
+
+        public DbSet<Gif> Gifs { get; set; }
     }
 }

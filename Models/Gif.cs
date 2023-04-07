@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Reflection.Metadata;
 
 namespace GIFterWeb.Models
 {
@@ -7,9 +8,10 @@ namespace GIFterWeb.Models
         [Key]
         public int Id { get; set; }
         [Required]
-        public int Image { get; set; }
+        public Blob Image { get; set; }
         [Required]
         public string[] Tags { get; set; }
+        public DateTime CreationDate { get; set; } = DateTime.Now;
         public Gif()
         {
             
