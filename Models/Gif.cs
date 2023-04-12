@@ -10,6 +10,8 @@ namespace GIFterWeb.Models
         public int Image { get; set; }
         [Required]
         public string Tags { get; set; }
+        [Required]
+        public string Author { get; set; } 
         public Gif()
         {
             
