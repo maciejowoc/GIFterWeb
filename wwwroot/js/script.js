@@ -8,11 +8,15 @@ const acceptedFileTypes = ['video/mp4','video/wav'];
 const overlay = document.querySelector('#hoverOverlay');
 var finished = true;
 
-function readVideo (event) {
+//Function to convert
+
+function readVideo(event) {
+    // Prepare visuals - set progress bar
     progressBar.value = 0;
     progressBar.style.display = 'block';
     outputTag.style.display = 'none';
     dwnlnk.style.display = 'none';
+    //Get file
     let file = inputTag.files[0];
     if (event.target.files && event.target.files[0]) {
       var reader = new FileReader();
@@ -25,59 +29,67 @@ function readVideo (event) {
   
       reader.readAsDataURL(file);
       if(videoTag.getAttribute('listener') !== 'true'){
-        videoTag.addEventListener('loadedmetadata', function() {
-          progressBar.max = Math.round(videoTag.duration);
-          var vHeight = this.videoHeight;
-          var vWidth = this.videoWidth;
-          if (vHeight > 400) vHeight = 400;
-          if (vWidth > 500) vWidth = 500;
+          videoTag.addEventListener('loadedmetadata', function () {
+            //Set progress bar size depending of duration of video
+              progressBar.max = Math.round(videoTag.duration);
+
+              // Prepare canvas data
+              var vHeight = this.videoHeight;
+              var vWidth = this.videoWidth;
+              if (vHeight > 400) vHeight = 400;
+              if (vWidth > 500) vWidth = 500;
   
-          var bitmap = document.querySelector('#workplace');
+              var bitmap = document.querySelector('#workplace');
   
-          bitmap.setAttribute('width',vWidth);
-          bitmap.setAttribute('height',vHeight);
+              bitmap.setAttribute('width',vWidth);
+              bitmap.setAttribute('height',vHeight);
           
   
-          const ctx = bitmap.getContext('2d');
+              const ctx = bitmap.getContext('2d');
+
+              //Play video so encoder can gather data
+              videoTag.muted = true;
+              videoTag.loop = false;
+              videoTag.play();
   
-          videoTag.muted = true;
-          videoTag.loop = false;
-          videoTag.play();
-  
-          const clrSrc = () => {
-            ctx.fillStyle = 'rgba(255,255,255,0)';
-            ctx.fillRect(0,0,vWidth,vHeight);
-          }
-  
-          const encoder = new GIFEncoder(vWidth,vHeight);
-          encoder.setRepeat(0);
-          encoder.setDelay(0);
-          encoder.setQuality(20);
-  
-          const step = async() => {
-            if (!finished) {
-              let background = await clrSrc();
-              await new Promise(resolve => {
-              ctx.drawImage(videoTag,0,0,vWidth,vHeight);
-              frameB64Str = bitmap.toDataURL();
-              encoder.addFrame(ctx);
-              progressBar.value = Math.round(videoTag.currentTime);
-              resolve();
-            });
-            window.requestAnimationFrame(step);
-            }
-          };
-  
-          if(videoTag.getAttribute('listener') !== 'true') {
+              const clrSrc = () => {
+                ctx.fillStyle = 'rgba(255,255,255,0)';
+                ctx.fillRect(0,0,vWidth,vHeight);
+              }
+
+              // Generate encoder
+              const encoder = new GIFEncoder(vWidth,vHeight);
+              encoder.setRepeat(0);
+              encoder.setDelay(0);
+              encoder.setQuality(20);
+
+              // Method to capture video frame
+              const step = async() => {
+                if (!finished) {
+                  let background = await clrSrc();
+                  await new Promise(resolve => {
+                  ctx.drawImage(videoTag,0,0,vWidth,vHeight);
+                  frameB64Str = bitmap.toDataURL();
+                  encoder.addFrame(ctx);
+                  progressBar.value = Math.round(videoTag.currentTime);
+                  resolve();
+                });
+                window.requestAnimationFrame(step);
+                }
+              };
+
+              //Gather data from video
+          //if(videoTag.getAttribute('listener') !== 'true') {
             videoTag.addEventListener('play',() => {
               finished = false;
               encoder.start();
               step();
               window.requestAnimationFrame(step);
             });
-          }
+          //}
 
-          if(videoTag.getAttribute('listener') !== 'true') {
+               // Create prepared gif file
+          //if(videoTag.getAttribute('listener') !== 'true') {
             videoTag.addEventListener('ended', () => {
               encoder.finish();
               finished = true;
@@ -86,17 +98,25 @@ function readVideo (event) {
               let binary_gif = readableStream.getData();
               let b64Str = 'data:'+fileType+';base64,'+encode64(binary_gif);
 
-              dwnlnk.download = inputTag.files[0].name.replace('.mp4','.gif');              
-              dwnlnk.href = b64Str;
-              dwnlnk.style.display = 'block';
+              //Generate download button method
+                dwnlnk.addEventListener('click', (evt) => {
+                    const a = document.createElement('a')
+                    a.href = b64Str;
+                    a.download = inputTag.files[0].name.replace('.mp4', '.gif');
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                })
+
+                // Button visual effects - set visibility
+              document.querySelectorAll('.download').forEach(element => element.style.display = 'block');
               document.querySelector('#sauce').appendChild(dwnlnk);
               outputTag.setAttribute('src',b64Str);
               outputTag.style.display = 'block';
               progressBar.style.display = 'none';
-              delete encoder;
               videoTag.setAttribute('listener','true');
             });
-          }
+          //}
   
         }, false)
       }

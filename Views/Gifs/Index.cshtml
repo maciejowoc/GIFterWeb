@@ -1,4 +1,4 @@
-﻿
+﻿@model Gif
 @{
     ViewData["Title"] = "Generator";
 }
@@ -36,13 +36,19 @@
         <div id="sauce">
         </div>
         <div id="btnDownload">
-            <a id="download">💾 Save</a>
+            <button class="download" id="download">💾 Save</button>
+            <button class="download">Save in Web</button>
         </div>
         <div id="progress">
             <progress id="progressBar" value="0"> </progress>
         </div>
         <div id="hoverOverlay">
-            <h1><div id="box">Drag here your file</div></h1>
+            <h1><span id="box">Drag here your file</span></h1>
+        </div>
+        <div class="modal">
+            <div class="modal-content">
+                <h2>Type gif details</h2>
+            </div>
         </div>
     </div>
 </body>
