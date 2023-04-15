@@ -6,6 +6,8 @@ const progressBar = document.querySelector('#progressBar');
 const dwnlnk = document.querySelector('#download');
 const acceptedFileTypes = ['video/mp4','video/wav'];
 const overlay = document.querySelector('#hoverOverlay');
+const btnSave = document.querySelector('#btnStoreDB');
+const modal = document.querySelector('#savePrompt') 
 var finished = true;
 
 //Function to convert
@@ -161,4 +163,12 @@ document.addEventListener('dragover', fileHover);
 document.addEventListener('dragleave', fileHoverLeave);
 document.addEventListener('drop', fileDrop);
 
+btnSave.addEventListener('click', () => {
+    modal.style.display = 'block';
+})
 
+window.addEventListener('click', (event) => {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+})
