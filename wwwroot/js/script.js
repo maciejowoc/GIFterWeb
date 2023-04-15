@@ -15,7 +15,7 @@ function readVideo(event) {
     progressBar.value = 0;
     progressBar.style.display = 'block';
     outputTag.style.display = 'none';
-    dwnlnk.style.display = 'none';
+    document.querySelectorAll('.download').forEach(element => element.style.display = 'none');
     //Get file
     let file = inputTag.files[0];
     if (event.target.files && event.target.files[0]) {
@@ -99,18 +99,20 @@ function readVideo(event) {
               let b64Str = 'data:'+fileType+';base64,'+encode64(binary_gif);
 
               //Generate download button method
-                dwnlnk.addEventListener('click', (evt) => {
-                    const a = document.createElement('a')
-                    a.href = b64Str;
-                    a.download = inputTag.files[0].name.replace('.mp4', '.gif');
-                    document.body.appendChild(a);
-                    a.click();
-                    document.body.removeChild(a);
-                })
+                if (videoTag.getAttribute('listener') !== 'true') {
+                    dwnlnk.addEventListener('click', (evt) => {
+                        const a = document.createElement('a')
+                        a.href = b64Str;
+                        a.download = inputTag.files[0].name.replace('.mp4', '.gif');
+                        document.body.appendChild(a);
+                        a.click();
+                        document.body.removeChild(a);
+                    })
+                }
 
                 // Button visual effects - set visibility
-              document.querySelectorAll('.download').forEach(element => element.style.display = 'block');
-              document.querySelector('#sauce').appendChild(dwnlnk);
+              document.querySelectorAll('.download').forEach(element => element.style.display = 'inline-block');
+              document.querySelector('#btnDownload').appendChild(dwnlnk);
               outputTag.setAttribute('src',b64Str);
               outputTag.style.display = 'block';
               progressBar.style.display = 'none';
