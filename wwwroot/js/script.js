@@ -175,7 +175,8 @@ window.addEventListener('click', (event) => {
 
 document.querySelector('#addTag').addEventListener('click', () => {
     let tags = document.querySelectorAll('.tag');
-    if (tags.length < 6) {
+    if (tags.length < 5) {
+        const tagSpan = document.createElement('li');
         const tagInput = document.createElement("input");
         tagInput.setAttribute('type', 'text');
         tagInput.setAttribute('class', 'tag');
@@ -185,8 +186,9 @@ document.querySelector('#addTag').addEventListener('click', () => {
         tagButton.setAttribute('id', String(tags.length))
         tagButton.innerHTML = '-';
         tagButton.addEventListener('click', removeTag);
-        document.querySelector('#tags').appendChild(tagInput);
-        document.querySelector('#tags').appendChild(tagButton);
+        tagSpan.appendChild(tagInput);
+        tagSpan.appendChild(tagButton);
+        document.querySelector('#tags').appendChild(tagSpan);
     }
 })
 
