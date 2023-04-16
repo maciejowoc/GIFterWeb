@@ -172,3 +172,26 @@ window.addEventListener('click', (event) => {
         modal.style.display = "none";
     }
 })
+
+document.querySelector('#addTag').addEventListener('click', () => {
+    let tags = document.querySelectorAll('.tag');
+    if (tags.length < 6) {
+        const tagInput = document.createElement("input");
+        tagInput.setAttribute('type', 'text');
+        tagInput.setAttribute('class', 'tag');
+        tagInput.setAttribute('id', 'tag' + tags.length);
+        const tagButton = document.createElement("span");
+        tagButton.setAttribute('class', 'btnRemoveTag');
+        tagButton.setAttribute('id', String(tags.length))
+        tagButton.innerHTML = '-';
+        tagButton.addEventListener('click', removeTag);
+        document.querySelector('#tags').appendChild(tagInput);
+        document.querySelector('#tags').appendChild(tagButton);
+    }
+})
+
+function removeTag() {
+    let tagId = '#tag' + this.getAttribute('id');
+    document.querySelector(tagId).remove();
+    this.remove();
+}
