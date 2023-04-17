@@ -180,10 +180,8 @@ document.querySelector('#addTag').addEventListener('click', () => {
         const tagInput = document.createElement("input");
         tagInput.setAttribute('type', 'text');
         tagInput.setAttribute('class', 'tag');
-        tagInput.setAttribute('id', 'tag' + tags.length);
         const tagButton = document.createElement("span");
         tagButton.setAttribute('class', 'btnRemoveTag');
-        tagButton.setAttribute('id', String(tags.length))
         tagButton.innerHTML = '-';
         tagButton.addEventListener('click', removeTag);
         tagSpan.appendChild(tagInput);
@@ -193,7 +191,5 @@ document.querySelector('#addTag').addEventListener('click', () => {
 })
 
 function removeTag() {
-    let tagId = '#tag' + this.getAttribute('id');
-    document.querySelector(tagId).remove();
-    this.remove();
+    this.parentNode.remove();
 }
