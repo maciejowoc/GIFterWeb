@@ -130,7 +130,10 @@ function readVideo(event) {
     }
   };
 
+//  Run script as soon as file was put info file input
 inputTag.addEventListener('change',readVideo);
+
+//  Drag and drop effects
 
 function fileDrop(event) {
   event.stopPropagation();
@@ -162,6 +165,8 @@ document.addEventListener('dragenter', fileHover);
 document.addEventListener('dragover', fileHover);
 document.addEventListener('dragleave', fileHoverLeave);
 document.addEventListener('drop', fileDrop);
+
+//  Modal functions
 
 btnSave.addEventListener('click', () => {
     modal.style.display = 'block';

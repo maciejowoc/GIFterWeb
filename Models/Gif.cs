@@ -11,7 +11,9 @@ namespace GIFterWeb.Models
         [Required]
         public string Tags { get; set; }
         [Required]
-        public string Author { get; set; } 
+        public string Author { get; set; }
+        [Required]
+        public DateTime Created = DateTime.Now;   
         public Gif()
         {
             

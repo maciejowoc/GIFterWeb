@@ -11,6 +11,7 @@
     <script type="text/javascript" src="~/js/NeuQuant.js"></script>
     <script type="text/javascript" src="~/js/GIFEncoder.js"></script>
     <script type="text/javascript" src="~/js/b64.js"></script>
+    <script defer type="text/javascript" src="~/js/Sender.js"></script>
     <link rel="stylesheet" href="~/css/style.css">
 </head>
 <body>
@@ -52,7 +53,12 @@
                 <ul id="tags">
                     <li><input type="text" class="tag" /></li>
                 </ul>
-                <form method="post">  
+                <button id="SaveToServer">Save file</button>
+                <form method="post" id="Sender" style="display: none">
+                    <input asp-for="Id" value="@Guid.NewGuid()"/>
+                    <input asp-for="Image" />
+                    <input asp-for="Tags" />
+                    <input asp-for="Author" value="@User.Identity?.Name" />
                 </form>
             </div>
         </div>
