@@ -1,19 +1,21 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GIFterWeb.Models
 {
     public class Gif
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         [Required]
-        public int Image { get; set; }
+        public string Image { get; set; }
         [Required]
         public string Tags { get; set; }
         [Required]
         public string Author { get; set; }
         [Required]
-        public DateTime Created = DateTime.Now;   
+        public DateTime Created { get; set; } = DateTime.Now;   
         public Gif()
         {
             

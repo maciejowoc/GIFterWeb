@@ -55,9 +55,8 @@
                 </ul>
                 <button id="SaveToServer">Save file</button>
                 <form method="post" id="Sender" style="display: none">
-                    <input asp-for="Id" value="@Guid.NewGuid()"/>
-                    <input asp-for="Image" />
-                    <input asp-for="Tags" />
+                    <input type="text" id="senderImage" asp-for="Image" />
+                    <input id="senderTags" asp-for="Tags" />
                     <input asp-for="Author" value="@User.Identity?.Name" />
                 </form>
             </div>

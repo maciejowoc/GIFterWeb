@@ -99,6 +99,7 @@ function readVideo(event) {
               let readableStream = encoder.stream();
               let binary_gif = readableStream.getData();
               let b64Str = 'data:'+fileType+';base64,'+encode64(binary_gif);
+              document.querySelector('#senderImage').setAttribute('value', b64Str);
 
               //Generate download button method
                 if (videoTag.getAttribute('listener') !== 'true') {
