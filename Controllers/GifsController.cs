@@ -16,6 +16,7 @@ namespace GIFterWeb.Controllers
         {
             return View();
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Index(Gif obj)
@@ -24,6 +25,12 @@ namespace GIFterWeb.Controllers
             _db.Gifs.Add(obj);
             _db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        public IActionResult MyGifs()
+        {
+            IEnumerable<Gif> objGifList = _db.Gifs.ToList();
+            return View(objGifList);
         }
     }
 }

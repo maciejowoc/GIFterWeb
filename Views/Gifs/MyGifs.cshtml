@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Gif>
+@{
+    ViewData["Title"] = "My Gifs";
+}
+
+<h1>My Gifs</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>
+                Image
+            </th>
+            <th>
+                Tags
+            </th>
+            <th>
+                Date of Adding
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var obj in Model)
+        {
+            <tr>
+                <td>
+                    <img src=@obj.Image />
+                </td>
+                <td>
+                    @obj.Tags
+                </td>
+                <td>
+                    @obj.Created
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
