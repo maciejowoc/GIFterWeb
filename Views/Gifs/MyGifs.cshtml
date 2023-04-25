@@ -3,36 +3,30 @@
     ViewData["Title"] = "My Gifs";
 }
 
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="~/css/style.css">
+    <link rel="stylesheet" href="~/css/gifCard.css">
+</head>
+
 <h1>My Gifs</h1>
 
-<table>
-    <thead>
-        <tr>
-            <th>
-                Image
-            </th>
-            <th>
-                Tags
-            </th>
-            <th>
-                Date of Adding
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach(var obj in Model)
-        {
-            <tr>
-                <td>
-                    <img src=@obj.Image />
-                </td>
-                <td>
-                    @obj.Tags
-                </td>
-                <td>
-                    @obj.Created
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+
+@foreach(var obj in Model)
+{
+    <div class="ImgCard">
+        <div class="CardHeader">
+            <span class="Author">@obj.Author</span>
+            <span class="DateOfPosting">Added: @obj.Created.ToShortDateString()</span>
+        </div>
+        <div class="CardBody">
+            <img src=@obj.Image />
+            @foreach (var tag in obj.Tags.Split(',')){
+                <span class="Tag">@tag</span>
+            }   
+        </div>
+    </div>
+            
+
+}

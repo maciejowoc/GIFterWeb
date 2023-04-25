@@ -1,0 +1,46 @@
+﻿.ImgCard {
+    width: 50%;
+    min-width: 400px;
+    margin: auto;
+    border: 1px solid #dad6d6;
+    border-radius: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: hsla(225, 43%, 25%, 1);
+}
+.CardHeader {
+    display: grid;
+    grid-auto-columns: 50% 50%;
+    width: 100%;
+    background-color: hsla(225, 27%, 13%, 1);
+    border-radius: 20px 20px 0 0;
+    padding: 0.5% 2%;
+}
+    .CardHeader .Author {
+        display: grid;
+        grid-row: 1;
+        grid-column: 1;
+    }
+    .CardHeader .DateOfPosting {
+        display: grid;
+        grid-row: 1;
+        grid-column: 2;
+        text-align: right;
+    } 
+.CardBody {
+    display: block;
+    padding: 1.5%;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+    .CardBody img {
+        display: block;
+        width: 100%;
+    }
+.Tag {
+    margin: 2% 0.5% 0.5% 0.5%;
+    width: fit-content;
+    display: inline-block;
+    border: 1px solid #dad6d6;
+    border-radius: 10px;
+    padding: 1% 2%;
+    background-color: hsla(225, 27%, 13%, 1);
+}
