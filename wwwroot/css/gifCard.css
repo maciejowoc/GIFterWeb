@@ -1,7 +1,7 @@
 ﻿.ImgCard {
     width: 50%;
     min-width: 400px;
-    margin: auto;
+    margin: 0 auto 5svh auto;
     border: 1px solid #dad6d6;
     border-radius: 20px;
     font-family: Arial, Helvetica, sans-serif;
@@ -27,14 +27,18 @@
         text-align: right;
     } 
 .CardBody {
-    display: block;
+    display: grid;
     padding: 1.5%;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
     .CardBody img {
         display: block;
         width: 100%;
+        grid-row: 1;
     }
+.Tags {
+    grid-row: 2;
+}
 .Tag {
     margin: 2% 0.5% 0.5% 0.5%;
     width: fit-content;
@@ -44,3 +48,20 @@
     padding: 1% 2%;
     background-color: hsla(225, 27%, 13%, 1);
 }
+.CardButtons {
+    grid-row: 3;
+    text-align: right;
+}
+    .CardButtons button {
+        background: none;
+        box-sizing:border-box;
+        border: none;
+        width: 10%;
+        color: inherit;
+        padding: 1% 1%;
+    }
+    .CardButtons button:hover {
+        font-weight: bold;
+        color: #ffffff;
+        transition: 0.2s;
+    }

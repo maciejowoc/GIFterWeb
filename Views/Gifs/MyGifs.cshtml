@@ -22,9 +22,16 @@
         </div>
         <div class="CardBody">
             <img src=@obj.Image />
-            @foreach (var tag in obj.Tags.Split(',')){
-                <span class="Tag">@tag</span>
-            }   
+            <div class="Tags">
+                @foreach (var tag in obj.Tags.Split(','))
+                {
+                    <span class="Tag">@tag</span>
+                }
+            </div>
+            <div class="CardButtons">
+                <button>X</button>
+                <button>Edit</button>
+            </div>
         </div>
     </div>
             
