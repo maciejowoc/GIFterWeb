@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using GIFterWeb.Models;
 using GIFterWeb.Data;
+using System.Xml.Linq;
 
 namespace GIFterWeb.Controllers
 {
@@ -29,7 +30,9 @@ namespace GIFterWeb.Controllers
 
         public IActionResult MyGifs()
         {
-            IEnumerable<Gif> objGifList = _db.Gifs.ToList();
+            IEnumerable<Gif> objGifList = from gif in _db.Gifs 
+                                          where gif.Author == User.Identity.Name 
+                                          select gif;
             return View(objGifList);
         }
     }
