@@ -6,6 +6,7 @@ using System.Xml.Linq;
 
 namespace GIFterWeb.Controllers
 {
+    [DisableRequestSizeLimit]
     public class GifsController : Controller
     {
         private readonly ApplicationDbContext _db;

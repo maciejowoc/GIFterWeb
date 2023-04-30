@@ -22,7 +22,6 @@ function readVideo(event) {
     let file = inputTag.files[0];
     if (event.target.files && event.target.files[0]) {
       var reader = new FileReader();
-      let fileName = file.name;
 
       reader.onload = function(e) {
         videoSrc.src = e.target.result
