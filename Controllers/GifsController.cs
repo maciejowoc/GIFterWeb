@@ -33,6 +33,7 @@ namespace GIFterWeb.Controllers
         {
             IEnumerable<Gif> objGifList = from gif in _db.Gifs 
                                           where gif.Author == User.Identity.Name 
+                                          orderby gif.Created descending
                                           select gif;
             return View(objGifList);
         }
