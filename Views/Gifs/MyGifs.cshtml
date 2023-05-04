@@ -29,8 +29,8 @@
                 }
             </div>
             <div class="CardButtons">
-                <button>X</button>
-                <button>Edit</button>
+                @Html.ActionLink("X","Delete", new {id = obj.Id}, new {@class="optionButton"})
+                <a class="optionButton">Y</a>
             </div>
         </div>
     </div>

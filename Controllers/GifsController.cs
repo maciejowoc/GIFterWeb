@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using GIFterWeb.Models;
 using GIFterWeb.Data;
 using System.Xml.Linq;
+using System.Collections;
 
 namespace GIFterWeb.Controllers
 {
@@ -36,6 +37,14 @@ namespace GIFterWeb.Controllers
                                           orderby gif.Created descending
                                           select gif;
             return View(objGifList);
+        }
+
+        public IActionResult Delete(Guid id)
+        {
+            var dbGif = _db.Gifs.Find(id);
+            _db.Gifs.Remove(dbGif);
+            _db.SaveChanges();
+            return RedirectToAction("MyGifs");
         }
     }
 }
