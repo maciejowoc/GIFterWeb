@@ -8,7 +8,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="~/css/style.css">
     <link rel="stylesheet" href="~/css/gifCard.css">
-    <script defer type="text/javascript" src="~/js/updateData.js"></script>
 </head>
 
 <h1>My Gifs</h1>
@@ -17,7 +16,7 @@
 @foreach(var obj in Model)
 {
     <div class="ImgCard">
-        <div class="CardHeader">
+        <div class="CardHeader">     
             <span class="Author">@obj.Author</span>
             <span class="DateOfPosting">Added: @obj.Created.ToShortDateString()</span>
         </div>
@@ -30,16 +29,23 @@
                 }
             </div>
             <div class="CardButtons">
+                <span style="display:none">@obj.Id</span>
                 @Html.ActionLink("X","Delete", new {id = obj.Id}, new {@class="optionButton"})
-                <a class="optionButton" onclick="ShowInterface(this)">Y</a>
+                @Html.ActionLink("Y","Edit", new {id = obj.Id}, new {@class="optionButton"})
             </div>
         </div>
     </div>
 }
 <dialog id="alterModal">
-    <button id="addTag">+</button>
-    <div id="tagsField">
-
-    </div>
-    <button id="alterModalCancel" onclick="cancelModal()">Cancel</button>
+    <object type="text/html" href="Edit.cshtml"></object>
+    <input type="button" id="alterModalCancel" onclick="cancelModal()" value="Cancel" />
 </dialog>
+
+<script>
+    function ShowInterface() {
+        document.querySelector('#alterModal').showModal();
+    }
+    function cancelModal() {
+        document.querySelector('#alterModal').close();
+    }
+</script>

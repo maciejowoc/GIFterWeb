@@ -1,5 +1,8 @@
 ﻿const modal = document.querySelector('#alterModal');
-const inputs = document.querySelector('#tempTags');
+const inputs = document.querySelector('#tagsField');
+const btn = document.querySelector('#submit');
+const form = document.querySelector('#EditFormula');
+const tagsConnected = document.querySelector('#senderTags');
 
 function ShowInterface(e) { 
     modal.showModal();
@@ -24,9 +27,12 @@ function ShowInterface(e) {
         if (index != 0) { tagSpan.appendChild(tagButton); }
         document.querySelector('#tagsField').appendChild(tagSpan);
     });
-    console.log(e);
+    document.querySelector('#gifId').value = e.parentElement.children[0].innerHTML;
 }
 function cancelModal() {
+    while (inputs.firstChild) {
+        inputs.removeChild(inputs.firstChild);
+    }
     modal.close();
 }
 
@@ -49,4 +55,18 @@ document.querySelector('#addTag').addEventListener('click', () => {
 
 function removeTag() {
     this.parentNode.remove();
+}
+
+function send() {
+    var Tags = '';
+    var condition = true;
+    document.querySelectorAll('.tag').forEach(element => element.value != '' ? Tags += element.value + ',' : condition = false);
+    if (condition) {
+        Tags = Tags.substring(0, Tags.length - 1);
+        debugger;
+        tagsConnected.value = Tags;
+    }
+    else {
+        alert('Please fill every field');
+    }
 }
