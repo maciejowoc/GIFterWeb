@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="~/css/style.css">
     <link rel="stylesheet" href="~/css/gifCard.css">
+    <script defer type="text/javascript" src="~/js/updateData.js"></script>
 </head>
 
 <h1>My Gifs</h1>
@@ -30,10 +31,15 @@
             </div>
             <div class="CardButtons">
                 @Html.ActionLink("X","Delete", new {id = obj.Id}, new {@class="optionButton"})
-                <a class="optionButton">Y</a>
+                <a class="optionButton" onclick="ShowInterface(this)">Y</a>
             </div>
         </div>
     </div>
-            
-
 }
+<dialog id="alterModal">
+    <button id="addTag">+</button>
+    <div id="tagsField">
+
+    </div>
+    <button id="alterModalCancel" onclick="cancelModal()">Cancel</button>
+</dialog>
