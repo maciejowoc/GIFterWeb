@@ -1,23 +1,30 @@
 ﻿@model Gif
-@{
-    ViewData["Title"] = "Edit";
-}
+
 <head>
     <link rel="stylesheet" href="~/css/style.css">
+    <style>
+        header {
+            display: none;
+        }
+        footer {
+            display: none;
+        }
+    </style>
     <script defer type="text/javascript" src="~/js/updateData.js"></script>
 </head>
 <body>
     <form id="EditFormula" onsubmit="send()" asp-action="EditForm">
         <input type="button" id="addTag" value="+" />
-        <div id="tagsField">
+        <ul id="tags">
             @foreach (var tag in Model.Tags.Split(','))
             {
-                <input type="text" class="tag" value="@tag" />
+                <li><input type="text" class="tag" value="@tag" /><span class="btnRemoveTag">-</span></li>
             }
-        </div>
+        </ul>
         <input type="hidden" id="gifId" value="@Model.Id" asp-for="Id" />
         <input type="hidden" name="Tags" id="senderTags" value="" asp-for="Tags" />
         <input type="submit" id="submit" value="Update" />
+        <input type="button" id="cancel" value="Cancel" />
     </form>
 
 </body>
