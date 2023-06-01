@@ -84,6 +84,16 @@ hr {
     transition: 0.6s;
 }
 
+input[type=text],[type=password],[type=email] {
+    font-size: 2em;
+    font-family: Arial;
+    margin: 0.5%;
+    border-radius: 10px;
+    border-color: black;
+    background-color: hsla(225, 43%, 25%, 1);
+    color: #fff;
+}
+
 /* Media queries */
 @media (max-width: 400px) {
     #navi input {
