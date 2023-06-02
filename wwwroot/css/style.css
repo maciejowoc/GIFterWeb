@@ -85,7 +85,17 @@ hr {
 }
 
 input[type=text],[type=password],[type=email] {
-    font-size: 2em;
+    font-size: 1.4em;
+    font-family: Arial;
+    margin: 0.5%;
+    border-radius: 10px;
+    border-color: black;
+    background-color: hsla(225, 43%, 25%, 1);
+    color: #fff;
+}
+
+input[type=text]:focus, [type=password]:focus, [type=email]:focus {
+    font-size: 1.4em;
     font-family: Arial;
     margin: 0.5%;
     border-radius: 10px;
