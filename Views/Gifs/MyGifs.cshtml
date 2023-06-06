@@ -12,6 +12,20 @@
 
 <h1>My Gifs</h1>
 
+@if (ViewBag.Page > 0)
+{
+    <a href="@Url.Action("MyGifs", new { page = ViewBag.Page - 1 })"
+       class="tag">
+        &laquo; Prev
+    </a>
+}
+@if (ViewBag.Page < ViewBag.MaxPage)
+{
+    <a href="@Url.Action("MyGifs", new { page = ViewBag.Page + 1 })"
+       class="tag">
+        Next &raquo;
+    </a>
+}
 
 @foreach(var obj in Model)
 {
