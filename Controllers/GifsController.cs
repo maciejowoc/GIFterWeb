@@ -30,7 +30,7 @@ namespace GIFterWeb.Controllers
             return RedirectToAction("Index");
         }
         [Authorize]
-        public IActionResult MyGifs(int page = 0)
+        public IActionResult MyGifs(int page = 1)
         {
             int PageSize = 2;
             IEnumerable<Gif> objGifList = from gif in _db.Gifs 
@@ -38,7 +38,7 @@ namespace GIFterWeb.Controllers
                                           orderby gif.Created descending
                                           select gif;
             int count = objGifList.Count();
-            objGifList = objGifList.Skip(page * PageSize).Take(PageSize).ToList();
+            objGifList = objGifList.Skip(page * PageSize - PageSize).Take(PageSize).ToList();
             this.ViewBag.MaxPage = (count / PageSize) - (count % PageSize == 0 ? 1 : 0);
 
             this.ViewBag.Page = page;

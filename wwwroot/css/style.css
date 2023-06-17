@@ -210,3 +210,16 @@ input[type=text]:focus, [type=password]:focus, [type=email]:focus {
     font-weight: bold;
     transition: 0.2s;
 }
+/* Navigation buttons in MyGifs */
+#paginationNavi {
+    margin: auto;
+    text-align: center;
+    padding: 1%;
+}
+
+#paginationNavi a, #paginationNavi .tag {
+    display: inline-block;
+    width: 7%;
+    text-decoration: none;
+    padding: 2px 3px;
+}
