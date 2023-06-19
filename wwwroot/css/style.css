@@ -219,7 +219,7 @@ input[type=text]:focus, [type=password]:focus, [type=email]:focus {
 
 #paginationNavi a, #paginationNavi .tag {
     display: inline-block;
-    width: 7%;
+    width: 5%;
     text-decoration: none;
     padding: 2px 3px;
 }

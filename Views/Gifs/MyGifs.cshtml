@@ -21,41 +21,53 @@
         &laquo;
     </a>
 }
-    
-        @if (ViewBag.Page > 1)
-        {
-            <a href="@Url.Action("MyGifs", new { page = ViewBag.Page - 1 })"
-               class="tag">
-                @(ViewBag.Page - 1)
-            </a>
-        }
-        <a href="@Url.Action("MyGifs", new { page = ViewBag.Page })"
+@if (ViewBag.Page > 2)
+    {
+        <a href="@Url.Action("MyGifs", new { page = 1 })"
            class="tag">
-            @(ViewBag.Page)
+            1
         </a>
-        @if (ViewBag.Page + 1 < ViewBag.MaxPage)
-        {
-            
-            <a href="@Url.Action("MyGifs", new { page = ViewBag.Page + 1 })"
-               class="tag">
-                @(ViewBag.Page + 1)
-            </a>
-        }
-        @if(ViewBag.Page + 2 < ViewBag.MaxPage)
-        {
-            <a href="@Url.Action("MyGifs", new { page = ViewBag.Page + 2 })"
-               class="tag">
-                @(ViewBag.Page + 2)
-            </a>
-        }
-        @if (ViewBag.Page + 3 < ViewBag.MaxPage)
+        if (ViewBag.Page > 3)
         {
             <div class="tag">...</div>
         }
-        <a href="@Url.Action("MyGifs", new { page = ViewBag.MaxPage })"
-           class="tag">
-            @(ViewBag.MaxPage)
-        </a>
+    }
+
+@if (ViewBag.Page > 1)
+{
+    <a href="@Url.Action("MyGifs", new { page = ViewBag.Page - 1 })"
+        class="tag">
+        @(ViewBag.Page - 1)
+    </a>
+}
+<a href="@Url.Action("MyGifs", new { page = ViewBag.Page })"
+    class="tag">
+    @(ViewBag.Page)
+</a>
+@if (ViewBag.Page + 1 < ViewBag.MaxPage)
+{
+            
+    <a href="@Url.Action("MyGifs", new { page = ViewBag.Page + 1 })"
+        class="tag">
+        @(ViewBag.Page + 1)
+    </a>
+}
+@if(ViewBag.Page + 2 < ViewBag.MaxPage)
+{
+    <a href="@Url.Action("MyGifs", new { page = ViewBag.Page + 2 })"
+        class="tag">
+        @(ViewBag.Page + 2)
+    </a>
+    if (ViewBag.Page + 3 < ViewBag.MaxPage)
+    {
+        <div class="tag">...</div>
+    }
+}
+
+<a href="@Url.Action("MyGifs", new { page = ViewBag.MaxPage })"
+    class="tag">
+    @(ViewBag.MaxPage)
+</a>
 
 @if (ViewBag.Page < ViewBag.MaxPage)
 {

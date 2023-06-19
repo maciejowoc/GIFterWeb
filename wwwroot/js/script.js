@@ -47,6 +47,7 @@ function readVideo(event) {
           
   
               const ctx = bitmap.getContext('2d');
+              
 
               //Play video so encoder can gather data
               videoTag.muted = true;
@@ -192,6 +193,7 @@ document.querySelector('#addTag').addEventListener('click', () => {
         tagSpan.appendChild(tagInput);
         tagSpan.appendChild(tagButton);
         document.querySelector('#tags').appendChild(tagSpan);
+        tagInput.focus();
     }
 })
 
